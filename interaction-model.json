@@ -23,6 +23,111 @@
     {
       "name": "AMAZON.StopIntent",
       "samples": []
+    },
+    {
+      "name": "TopPostsIntent",
+      "samples": [
+        "{whatPhrase} the top posts in {subreddit}",
+        "{whatPhrase} top posts in {subreddit}",
+        "{whatPhrase} top posts on {subreddit}",
+        "{whatPhrase} the top posts on {subreddit}",
+        "{whatPhrase} the top posts on slash r slash {subreddit}",
+        "{whatPhrase} the top posts on r {subreddit}"
+      ],
+      "slots": [
+        {
+          "name": "whatPhrase",
+          "type": "WHAT_PHRASE",
+          "samples": []
+        },
+        {
+          "name": "subreddit",
+          "type": "SUBREDDIT",
+          "samples": []
+        }
+      ]
+    }
+  ],
+  "types": [
+    {
+      "name": "SUBREDDIT",
+      "values": [
+        {
+          "id": "politics",
+          "name": {
+            "value": "politics",
+            "synonyms": []
+          }
+        },
+        {
+          "id": "worldnews",
+          "name": {
+            "value": "world news",
+            "synonyms": []
+          }
+        },
+        {
+          "id": "technology",
+          "name": {
+            "value": "technology",
+            "synonyms": []
+          }
+        },
+        {
+          "id": "esist",
+          "name": {
+            "value": "resist",
+            "synonyms": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "WHAT_PHRASE",
+      "values": [
+        {
+          "id": null,
+          "name": {
+            "value": "what is",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "what's",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "give me",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "tell me",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "what are",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "find",
+            "synonyms": []
+          }
+        }
+      ]
     }
   ]
 }

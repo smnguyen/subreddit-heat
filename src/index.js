@@ -1,14 +1,10 @@
 import Alexa from 'alexa-sdk';
 
-import amazonHandlers from 'handlers/amazon';
-
-const handlers = {
-
-};
+import AmazonHandlers from 'handlers/amazon';
 
 export function handler(event, context, callback) {
   const alexa = Alexa.handler(event, context, callback);
   alexa.APP_ID = process.env.APP_ID;
-  alexa.registerHandlers(amazonHandlers, handlers);
+  alexa.registerHandlers(AmazonHandlers);
   alexa.execute();
-};
+}

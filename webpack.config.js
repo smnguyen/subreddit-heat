@@ -1,4 +1,5 @@
 var path = require('path');
+var nodeExternals = require('webpack-node-externals');
 
 module.exports = {
   entry: './src/index.js',
@@ -6,6 +7,7 @@ module.exports = {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist')
   },
+  target: 'node',
   module: {
     rules: [
       {
@@ -19,10 +21,9 @@ module.exports = {
   },
   resolve: {
     alias: {
-      handlers: path.resolve(__dirname, 'src/handlers')
+      handlers: path.resolve(__dirname, 'src/handlers'),
+      helpers: path.resolve(__dirname, 'src/helpers')
     }
   },
-  externals: {
-    'alexa-sdk': 'Alexa'
-  }
+  externals: [ nodeExternals() ]
 }
