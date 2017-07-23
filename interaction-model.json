@@ -25,14 +25,14 @@
       "samples": []
     },
     {
-      "name": "TopPostsIntent",
+      "name": "HotPostsIntent",
       "samples": [
-        "{whatPhrase} the top posts in {subreddit}",
-        "{whatPhrase} top posts in {subreddit}",
-        "{whatPhrase} top posts on {subreddit}",
-        "{whatPhrase} the top posts on {subreddit}",
-        "{whatPhrase} the top posts on slash r slash {subreddit}",
-        "{whatPhrase} the top posts on r {subreddit}"
+        "{whatPhrase} the hot posts in {subreddit}",
+        "{whatPhrase} hot posts in {subreddit}",
+        "{whatPhrase} hot posts on {subreddit}",
+        "{whatPhrase} the hot posts on {subreddit}",
+        "{whatPhrase} the hot posts on slash r slash {subreddit}",
+        "{whatPhrase} the hot posts on r {subreddit}"
       ],
       "slots": [
         {

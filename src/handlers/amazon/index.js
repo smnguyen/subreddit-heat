@@ -7,8 +7,8 @@ const AmazonHandlers = {
   'AMAZON.HelpIntent': function() {
     this.emit(
       ':ask',
-      'I can tell you the top posts for a subreddit you care about.',
-      'Ask me, "What are the top posts on /r/politics?"'
+      'I can tell you the hot posts for a subreddit you care about.',
+      'Ask me, "What are the hot posts on /r/politics?"'
     );
   },
   'AMAZON.NextIntent': function() {
@@ -23,12 +23,12 @@ const AmazonHandlers = {
   'AMAZON.StopIntent': function() {
     this.emit('AMAZON.CancelIntent');
   },
-  'TopPostsIntent': function() {
+  'HotPostsIntent': function() {
     const request = this.event.request;
     const slots = request.intent.slots;
     const subreddit = isSlotValid(request, 'subreddit');
 
-    console.log('TopPostsIntent', subreddit);
+    console.log('HotPostsIntent', subreddit);
     this.emit(':tell', `You asked about ${subreddit} -- I'm looking now!`);
   },
   'Unhandled': function() {
