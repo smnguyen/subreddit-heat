@@ -1,5 +1,3 @@
-import { isSlotValid } from 'helpers';
-
 const AmazonHandlers = {
   'AMAZON.CancelIntent': function() {
     this.emit(':tell', 'OK!');
@@ -22,14 +20,6 @@ const AmazonHandlers = {
   },
   'AMAZON.StopIntent': function() {
     this.emit('AMAZON.CancelIntent');
-  },
-  'HotPostsIntent': function() {
-    const request = this.event.request;
-    const slots = request.intent.slots;
-    const subreddit = isSlotValid(request, 'subreddit');
-
-    console.log('HotPostsIntent', subreddit);
-    this.emit(':tell', `You asked about ${subreddit} -- I'm looking now!`);
   },
   'Unhandled': function() {
     this.emit('AMAZON.HelpIntent');
