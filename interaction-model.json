@@ -79,6 +79,127 @@
             "value": "resist",
             "synonyms": []
           }
+        },
+        {
+          "id": "all",
+          "name": {
+            "value": "all",
+            "synonyms": []
+          }
+        },
+        {
+          "id": "popular",
+          "name": {
+            "value": "popular",
+            "synonyms": []
+          }
+        },
+        {
+          "id": "todayilearned",
+          "name": {
+            "value": "today I learned",
+            "synonyms": []
+          }
+        },
+        {
+          "id": "funny",
+          "name": {
+            "value": "funny",
+            "synonyms": []
+          }
+        },
+        {
+          "id": "science",
+          "name": {
+            "value": "science",
+            "synonyms": []
+          }
+        },
+        {
+          "id": "iama",
+          "name": {
+            "value": "ask me anything",
+            "synonyms": []
+          }
+        },
+        {
+          "id": "pics",
+          "name": {
+            "value": "pics",
+            "synonyms": []
+          }
+        },
+        {
+          "id": "gaming",
+          "name": {
+            "value": "gaming",
+            "synonyms": []
+          }
+        },
+        {
+          "id": "videos",
+          "name": {
+            "value": "videos",
+            "synonyms": []
+          }
+        },
+        {
+          "id": "movies",
+          "name": {
+            "value": "movies",
+            "synonyms": []
+          }
+        },
+        {
+          "id": "music",
+          "name": {
+            "value": "music",
+            "synonyms": []
+          }
+        },
+        {
+          "id": "aww",
+          "name": {
+            "value": "aww",
+            "synonyms": []
+          }
+        },
+        {
+          "id": "gifs",
+          "name": {
+            "value": "gifs",
+            "synonyms": []
+          }
+        },
+        {
+          "id": "news",
+          "name": {
+            "value": "news",
+            "synonyms": []
+          }
+        },
+        {
+          "id": "askreddit",
+          "name": {
+            "value": "ask reddit",
+            "synonyms": []
+          }
+        },
+        {
+          "id": "askscience",
+          "name": {
+            "value": "ask science",
+            "synonyms": []
+          }
+        },
+        {
+          "id": "explainlikeimfive",
+          "name": {
+            "value": "explain like I'm five",
+            "synonyms": [
+              "explain like I'm 5"
+            ]
+          }
         }
       ]
     },
