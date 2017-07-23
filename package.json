@@ -16,8 +16,9 @@
     "webpack-node-externals": "^1.6.0"
   },
   "scripts": {
-    "build": "yarn compile && yarn bundle",
+    "build": "yarn run clean && yarn compile && yarn bundle",
     "bundle": "sh script/bundle.sh",
+    "clean": "rm -rf dist dist.zip",
     "compile": "webpack && sed -i '' -e '1s/[ ]/ exports.handler = /;t' dist/index.js && sed -i '' '$s/;/.handler;/' dist/index.js"
   }
 }
