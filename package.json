@@ -5,7 +5,8 @@
     "node": "^6.10.1"
   },
   "dependencies": {
-    "alexa-sdk": "^1.0.11"
+    "alexa-sdk": "^1.0.11",
+    "node-fetch": "^1.7.1"
   },
   "devDependencies": {
     "babel-core": "^6.25.0",
@@ -15,7 +16,8 @@
     "webpack-node-externals": "^1.6.0"
   },
   "scripts": {
-    "build": "webpack && sed -i '' -e '1s/[ ]/ exports.handler = /;t' dist/bundle.js && sed -i '' '$s/;/.handler;/' dist/bundle.js",
-    "postbuild": "cat dist/bundle.js | pbcopy"
+    "build": "yarn compile && yarn bundle",
+    "bundle": "sh script/bundle.sh",
+    "compile": "webpack && sed -i '' -e '1s/[ ]/ exports.handler = /;t' dist/index.js && sed -i '' '$s/;/.handler;/' dist/index.js"
   }
 }
