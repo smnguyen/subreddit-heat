@@ -15,6 +15,7 @@
     "webpack-node-externals": "^1.6.0"
   },
   "scripts": {
-    "build": "webpack"
+    "build": "webpack && sed -i '' -e '1s/[ ]/ exports.handler = /;t' dist/bundle.js && sed -i '' '$s/;/.handler;/' dist/bundle.js",
+    "postbuild": "cat dist/bundle.js | pbcopy"
   }
 }
