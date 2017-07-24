@@ -13,6 +13,10 @@
       "samples": []
     },
     {
+      "name": "AMAZON.NoIntent",
+      "samples": []
+    },
+    {
       "name": "AMAZON.PreviousIntent",
       "samples": []
     },
@@ -22,6 +26,10 @@
     },
     {
       "name": "AMAZON.StopIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.YesIntent",
       "samples": []
     },
     {
