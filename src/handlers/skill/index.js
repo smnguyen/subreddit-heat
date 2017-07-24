@@ -1,6 +1,4 @@
-import fetch from 'node-fetch';
-
-import { getSubreddit } from 'helpers';
+import { fetchPosts, getSubreddit } from 'helpers';
 
 const SkillHandlers = {
   'HotPostsIntent': function() {
@@ -12,14 +10,17 @@ const SkillHandlers = {
       return;
     }
 
-    fetch(`https://www.reddit.com/r/${subreddit}/hot.json?limit=1`)
-      .then(response => response.json())
-      .then(json => json.data.children)
+    fetchPosts(subreddit)
       .then(posts => posts.filter(post => !post.data.stickied))
-      .then(posts => this.emit(
-        ':tell',
-        `The hottest post on r ${subreddit} is: "${posts[0].data.title}".`
-      ))
+      .then(posts => {
+        let message;
+        if (posts.length) {
+          message = `The hottest post on r ${subreddit} is: "${posts[0].data.title}".`;
+        } else {
+          message = `Looks like nobody has posted on r ${subreddit} yet.`
+        }
+        this.emit(':tell', message);
+      })
       .catch(error => {
         console.error(error);
         console.error(`Failed to fetch posts for subreddit ${subreddit}`);
