@@ -1,29 +1,21 @@
 import { fetchPosts, getSubreddit } from 'helpers';
+import { INTENTS } from 'helpers/constants';
 
 const NewSessionHandlers = {
-  'AMAZON.CancelIntent': function() {
+  [INTENTS.AMAZON.CANCEL]: function() {
     this.emit(':tell', 'OK!');
   },
-  'AMAZON.HelpIntent': function() {
+  [INTENTS.AMAZON.HELP]: function() {
     this.emit(
       ':ask',
       'I can tell you the hot posts for a subreddit you care about.',
       'Here\'s an example: ask me, "What are the hot posts on /r/politics?"'
     );
   },
-  'AMAZON.NextIntent': function() {
-    this.emit('AMAZON.HelpIntent');
+  [INTENTS.AMAZON.STOP]: function() {
+    this.emit(INTENTS.AMAZON.CANCEL);
   },
-  'AMAZON.PreviousIntent': function() {
-    this.emit('AMAZON.HelpIntent');
-  },
-  'AMAZON.RepeatIntent': function() {
-    this.emit('AMAZON.HelpIntent');
-  },
-  'AMAZON.StopIntent': function() {
-    this.emit('AMAZON.CancelIntent');
-  },
-  'HotPostsIntent': function() {
+  [INTENTS.HOT_POSTS]: function() {
     const request = this.event.request;
     const { subreddit, query } = getSubreddit(request);
 
@@ -49,7 +41,7 @@ const NewSessionHandlers = {
       });
   },
   'Unhandled': function() {
-    this.emit('AMAZON.HelpIntent');
+    this.emit(INTENTS.AMAZON.HELP);
   }
 };
 
