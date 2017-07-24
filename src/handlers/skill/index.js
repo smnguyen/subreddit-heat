@@ -3,7 +3,7 @@ import { fetchPosts, getSubreddit } from 'helpers';
 const SkillHandlers = {
   'HotPostsIntent': function() {
     const request = this.event.request;
-    const subreddit = getSubreddit(request);
+    const { subreddit, query } = getSubreddit(request);
 
     if (!subreddit) {
       console.error("Couldn't parse subreddit from request:", request);
@@ -23,7 +23,7 @@ const SkillHandlers = {
       })
       .catch(error => {
         console.error(error);
-        console.error(`Failed to fetch posts for subreddit ${subreddit}`);
+        console.error(`Failed to fetch posts for query ${query}, subreddit ${subreddit}`);
       });
   }
 };
