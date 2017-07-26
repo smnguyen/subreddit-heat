@@ -8,6 +8,9 @@ const NewSessionHandlers = {
   [INTENTS.AMAZON.STOP]: function() {
     this.emit(INTENTS.AMAZON.CANCEL);
   },
+  [INTENTS.AMAZON.NO]: function() {
+    this.emit(INTENTS.AMAZON.CANCEL);
+  },
   [INTENTS.AMAZON.HELP]: function() {
     this.emit(
       ':ask',
@@ -21,8 +24,11 @@ const NewSessionHandlers = {
 
     if (!subreddit) {
       console.error("Couldn't parse subreddit from request:", request);
-      // TODO Also tell the user Alexa couldn't tell what they meant
-      this.emit(INTENTS.AMAZON.HELP);
+      return this.emit(
+        ':ask',
+        "Sorry, I don't know what you mean. I can tell you the hot posts for a subreddit you care about.",
+        "Here's an example: ask me, 'What are the hot posts on /r/politics?'"
+      );
     }
 
     fetchPosts(subreddit)
@@ -40,8 +46,11 @@ const NewSessionHandlers = {
             `Do you want to know more about "${title}"?`
           );
         } else {
-          // TODO Ask the user if they want to search again
-          this.emit(':tell', `Looks like nobody has posted on r ${subreddit} yet.`);
+          this.emit(
+            ':ask',
+            `Looks like nobody has posted on r ${subreddit} yet. Ask me about a different subreddit.`,
+            `Ask me about a different subreddit.`
+          );
         }
       })
       .catch(error => {
