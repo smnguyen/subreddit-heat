@@ -1,10 +1,10 @@
 import Alexa from 'alexa-sdk';
 
-import { findHotPosts } from 'handlers/common';
+import { findHotPosts, withHandlerLogging } from 'handlers/common';
 import { getCurrentPost } from 'helpers';
 import { INTENTS, STATES } from 'helpers/constants';
 
-const PostDetailHandlers = Alexa.CreateStateHandler(STATES.POST_DETAIL, {
+const PostDetailHandlers = Alexa.CreateStateHandler(STATES.POST_DETAIL, withHandlerLogging({
   [INTENTS.AMAZON.CANCEL]: function() {
     this.emit(':tell', 'Goodbye!');
   },
@@ -39,6 +39,6 @@ const PostDetailHandlers = Alexa.CreateStateHandler(STATES.POST_DETAIL, {
   [INTENTS.UNHANDLED]: function() {
     this.emitWithState(INTENTS.AMAZON.HELP);
   }
-});
+}));
 
 export default PostDetailHandlers;

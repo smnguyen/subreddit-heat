@@ -1,10 +1,10 @@
 import Alexa from 'alexa-sdk';
 
-import { findHotPosts } from 'handlers/common';
+import { findHotPosts, withHandlerLogging } from 'handlers/common';
 import { getCurrentPost, rankToOrdinal } from 'helpers';
 import { INTENTS, STATES } from 'helpers/constants';
 
-const HotPostsHandlers = Alexa.CreateStateHandler(STATES.HOT_POSTS, {
+const HotPostsHandlers = Alexa.CreateStateHandler(STATES.HOT_POSTS, withHandlerLogging({
   [INTENTS.AMAZON.CANCEL]: function() {
     this.emit(':tell', 'Goodbye!');
   },
@@ -81,6 +81,6 @@ const HotPostsHandlers = Alexa.CreateStateHandler(STATES.HOT_POSTS, {
   [INTENTS.UNHANDLED]: function() {
     this.emitWithState(INTENTS.AMAZON.HELP);
   }
-});
+}));
 
 export default HotPostsHandlers;

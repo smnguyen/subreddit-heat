@@ -1,7 +1,7 @@
-import { findHotPosts } from 'handlers/common';
+import { findHotPosts, withHandlerLogging } from 'handlers/common';
 import { INTENTS } from 'helpers/constants';
 
-const NewSessionHandlers = {
+const NewSessionHandlers = withHandlerLogging({
   [INTENTS.AMAZON.CANCEL]: function() {
     this.emit(':tell', 'Goodbye!');
   },
@@ -22,6 +22,6 @@ const NewSessionHandlers = {
   [INTENTS.UNHANDLED]: function() {
     this.emit(INTENTS.AMAZON.HELP);
   }
-};
+});
 
 export default NewSessionHandlers;

@@ -1,6 +1,23 @@
 import { fetchPosts, getSubreddit } from 'helpers';
 import { INTENTS, STATES } from 'helpers/constants';
 
+export function withHandlerLogging(handlers) {
+  Object.keys(handlers).forEach(intent => {
+    const rawHandler = handlers[intent];
+    handlers[intent] = function() {
+      const request = this.event.request;
+      const requestType = request.type;
+      const requestIntent = requestType === 'IntentRequest' ? request.intent.name : '';
+
+      console.log(`[request type] ${requestType} -- [request intent] ${requestIntent}`);
+      console.log(`[intent] ${intent} -- [state] ${this.handler.state}`);
+
+      rawHandler.call(this);
+    };
+  });
+  return handlers;
+}
+
 export function findHotPosts() {
   const request = this.event.request;
   const { subreddit, query } = getSubreddit(request);
