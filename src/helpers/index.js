@@ -17,6 +17,10 @@ export function getSubreddit(request) {
   }
 }
 
+export function getCurrentPost({ posts, rank }) {
+  return posts[rank - 1].data;
+}
+
 // Convert a query to a valid subreddit name. The generated name may or may not
 // be an actual subreddit.
 //

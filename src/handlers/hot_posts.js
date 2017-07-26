@@ -1,7 +1,7 @@
 import Alexa from 'alexa-sdk';
 
 import { findHotPosts } from 'handlers/common';
-import { rankToOrdinal } from 'helpers';
+import { getCurrentPost, rankToOrdinal } from 'helpers';
 import { INTENTS, STATES } from 'helpers/constants';
 
 const HotPostsHandlers = Alexa.CreateStateHandler(STATES.HOT_POSTS, {
@@ -20,9 +20,8 @@ const HotPostsHandlers = Alexa.CreateStateHandler(STATES.HOT_POSTS, {
     );
   },
   [INTENTS.POST_TITLE]: function() {
-    const { subreddit, posts, rank } = this.attributes;
-    const index = rank - 1;
-    const { title } = posts[index].data;
+    const { subreddit, rank } = this.attributes;
+    const { title } = getCurrentPost(this.attributes);
 
     this.emit(
       ':ask',
@@ -48,10 +47,10 @@ const HotPostsHandlers = Alexa.CreateStateHandler(STATES.HOT_POSTS, {
     }
   },
   [INTENTS.AMAZON.PREVIOUS]: function() {
-    const { subreddit, posts, rank } = this.attributes;
+    const { subreddit, rank } = this.attributes;
 
     if (rank === 1) {
-      const { title } = posts[rank - 1];
+      const { title } = getCurrentPost(this.attributes);
       this.emit(
         ':ask',
         `Sorry, you're already on the top post for r ${subreddit}. Do you want to know more about "${title}"?`
@@ -65,7 +64,7 @@ const HotPostsHandlers = Alexa.CreateStateHandler(STATES.HOT_POSTS, {
     const { subreddit, posts, rank } = this.attributes;
 
     if (rank === posts.length) {
-      const { title } = posts[rank - 1];
+      const { title } = getCurrentPost(this.attributes);
       this.emit(
         ':ask',
         `Sorry, that's all I have for you on r ${subreddit}. Do you want to know more about "${title}"?`

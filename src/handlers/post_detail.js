@@ -1,11 +1,7 @@
 import Alexa from 'alexa-sdk';
 
-import { findHotPosts } from 'handlers/common';
+import { findHotPosts, getCurrentPost } from 'handlers/common';
 import { INTENTS, STATES } from 'helpers/constants';
-
-function getCurrentPost({ posts, rank }) {
-  return posts[rank - 1].data;
-}
 
 const PostDetailHandlers = Alexa.CreateStateHandler(STATES.POST_DETAIL, {
   [INTENTS.AMAZON.CANCEL]: function() {
