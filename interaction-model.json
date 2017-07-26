@@ -35,12 +35,12 @@
     {
       "name": "HotPostsIntent",
       "samples": [
-        "{whatPhrase} the hot posts in {subreddit}",
-        "{whatPhrase} hot posts in {subreddit}",
-        "{whatPhrase} hot posts on {subreddit}",
-        "{whatPhrase} the hot posts on {subreddit}",
-        "{whatPhrase} the hot posts on slash r slash {subreddit}",
-        "{whatPhrase} the hot posts on r {subreddit}"
+        "{whatPhrase} {postRanking} hot posts in {subreddit}",
+        "{whatPhrase} {postRanking} posts in {subreddit}",
+        "{whatPhrase} {postRanking} posts on {subreddit}",
+        "{whatPhrase} the {postRanking} posts on {subreddit}",
+        "{whatPhrase} the {postRanking} posts on slash r slash {subreddit}",
+        "{whatPhrase} the {postRanking} posts on r {subreddit}"
       ],
       "slots": [
         {
@@ -51,6 +51,11 @@
         {
           "name": "subreddit",
           "type": "SUBREDDIT",
+          "samples": []
+        },
+        {
+          "name": "postRanking",
+          "type": "POST_RANKING",
           "samples": []
         }
       ]
@@ -72,6 +77,46 @@
     }
   ],
   "types": [
+    {
+      "name": "POST_RANKING",
+      "values": [
+        {
+          "id": null,
+          "name": {
+            "value": "top",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "hot",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "trending",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "new",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "controversial",
+            "synonyms": []
+          }
+        }
+      ]
+    },
     {
       "name": "SUBREDDIT",
       "values": [
