@@ -1,5 +1,6 @@
 import Alexa from 'alexa-sdk';
 
+import { findHotPosts } from 'handlers/common';
 import { INTENTS, STATES } from 'helpers/constants';
 
 const PostDetailHandlers = Alexa.CreateStateHandler(STATES.POST_DETAIL, {
@@ -34,6 +35,7 @@ const PostDetailHandlers = Alexa.CreateStateHandler(STATES.POST_DETAIL, {
 
     this.emit(':tell', messages.join(' '));
   },
+  [INTENTS.HOT_POSTS]: findHotPosts,
   [INTENTS.UNHANDLED]: function() {
     this.emit(INTENTS.AMAZON.HELP);
   }
