@@ -10,9 +10,12 @@ export const INTENTS = {
     NO: 'AMAZON.NoIntent'
   },
   HOT_POSTS: 'HotPostsIntent',
+  POST_DETAILS: 'PostDetailsIntent',
+  POST_TITLE: 'PostTitleIntent',
   UNHANDLED: 'Unhandled'
 };
 
 export const STATES = {
-  POST_DETAIL: 'POST_DETAIL'
+  POST_DETAIL: 'POST_DETAIL',
+  HOT_POSTS: 'HOT_POSTS'
 };

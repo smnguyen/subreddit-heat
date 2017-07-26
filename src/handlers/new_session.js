@@ -14,7 +14,7 @@ const NewSessionHandlers = {
   [INTENTS.AMAZON.HELP]: function() {
     this.emit(
       ':ask',
-      'I can tell you the hot posts for a subreddit you care about.',
+      'Hello! On Subreddit Heat, I can tell you the hot posts for a subreddit you care about.',
       "Here's an example: ask me, 'What are the hot posts on /r/politics?'"
     );
   },

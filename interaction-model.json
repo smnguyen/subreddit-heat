@@ -54,6 +54,21 @@
           "samples": []
         }
       ]
+    },
+    {
+      "name": "PostDetailsIntent",
+      "samples": [
+        "tell me more",
+        "give me more details on that post",
+        "tell me more about that post",
+        "tell me about the post"
+      ],
+      "slots": []
+    },
+    {
+      "name": "PostTitleIntent",
+      "samples": [],
+      "slots": []
     }
   ],
   "types": [

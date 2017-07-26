@@ -3,41 +3,44 @@ import Alexa from 'alexa-sdk';
 import { findHotPosts } from 'handlers/common';
 import { INTENTS, STATES } from 'helpers/constants';
 
+function getCurrentPost({ posts, rank }) {
+  return posts[rank - 1].data;
+}
+
 const PostDetailHandlers = Alexa.CreateStateHandler(STATES.POST_DETAIL, {
   [INTENTS.AMAZON.CANCEL]: function() {
     this.emit(':tell', 'Goodbye!');
   },
   [INTENTS.AMAZON.STOP]: function() {
-    this.emit(INTENTS.AMAZON.CANCEL);
-  },
-  [INTENTS.AMAZON.NO]: function() {
-    this.emit(INTENTS.AMAZON.CANCEL);
+    this.emitWithState(INTENTS.AMAZON.CANCEL);
   },
   [INTENTS.AMAZON.HELP]: function() {
-    const { currentPost } = this.attributes;
-    const { title, subreddit } = currentPost;
+    const { subreddit } = this.attributes;
+    const { title } = getCurrentPost(this.attributes);
     this.emit(
       ':ask',
       `Let me know if you want to know more about "${title}" from r ${subreddit}.`,
       `Do you want to know more about "${title}"?`
     );
   },
-  [INTENTS.AMAZON.YES]: function() {
-    const { currentPost } = this.attributes;
-    const { title, subreddit, score, author, domain, is_self, num_comments } = currentPost;
+  [INTENTS.POST_DETAILS]: function() {
+    const { subreddit } = this.attributes;
+    const { title, score, author, domain, is_self, num_comments } = getCurrentPost(this.attributes);
 
     const messages = [
       `"${title}" on r ${subreddit} has ${score} karma.`,
       `It was posted by ${author}.`,
       is_self ? 'The post was a self post.' : `The post was found on ${domain}.`,
-      `It has ${num_comments} comments.`
+      `It has ${num_comments} comments.`,
+      "That's all I have on this post! Say 'next' to continue."
     ];
 
-    this.emit(':tell', messages.join(' '));
+    this.handler.state = STATES.HOT_POSTS;
+    this.emit(':ask', messages.join(' '), 'Say "next" to continue.');
   },
   [INTENTS.HOT_POSTS]: findHotPosts,
   [INTENTS.UNHANDLED]: function() {
-    this.emit(INTENTS.AMAZON.HELP);
+    this.emitWithState(INTENTS.AMAZON.HELP);
   }
 });
 

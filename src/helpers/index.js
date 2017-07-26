@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 
-export function fetchPosts(subreddit, sort = 'hot', limit = 1) {
+export function fetchPosts(subreddit, sort = 'hot', limit = 5) {
   return fetch(`https://www.reddit.com/r/${subreddit}/${sort}.json?limit=${limit}&raw_json=1`)
     .then(response => response.json())
     .then(json => json.data.children);
@@ -9,7 +9,9 @@ export function fetchPosts(subreddit, sort = 'hot', limit = 1) {
 export function getSubreddit(request) {
   const slot = request.intent.slots.subreddit;
   if (slot && slot.value) {
-    return { subreddit: queryToSubreddit(slot.value), query: slot.value };
+    const subreddit = queryToSubreddit(slot.value);
+    console.log('Query: ', slot.value, 'Subreddit: ', subreddit);
+    return { subreddit, query: slot.value };
   } else {
     return {};
   }
@@ -27,4 +29,13 @@ export function getSubreddit(request) {
 //   See the subreddit regexes and `Subreddit.is_valid_name`.
 export function queryToSubreddit(query) {
   return query.replace(/\W/g, '');
+}
+
+export function rankToOrdinal(rank) {
+  switch (rank) {
+    case 1: return '';
+    case 2: return '2nd';
+    case 3: return '3rd';
+    default: return `${rank}th`;
+  }
 }
