@@ -15,8 +15,8 @@ const HotPostsHandlers = Alexa.CreateStateHandler(STATES.HOT_POSTS, {
     const { subreddit } = this.attributes;
     this.emit(
       ':ask',
-      `I can tell you about the hottest posts on r ${subreddit}.`,
-      'You can say "next", "previous", or "say that again" to hear more.'
+      `I can tell you about the hottest posts on r ${subreddit}.
+      You can say "next", "previous", or "say that again" to hear more.`
     );
   },
   [INTENTS.POST_TITLE]: function() {
@@ -25,7 +25,8 @@ const HotPostsHandlers = Alexa.CreateStateHandler(STATES.HOT_POSTS, {
 
     this.emit(
       ':ask',
-      `The ${rankToOrdinal(rank)} hottest post on r ${subreddit} is: "${title}". Do you want to know more?`
+      `The ${rankToOrdinal(rank)} hottest post on r ${subreddit} is: "${title}".
+      Do you want to know more?`
     );
   },
   [INTENTS.POST_DETAILS]: function() {
@@ -53,7 +54,8 @@ const HotPostsHandlers = Alexa.CreateStateHandler(STATES.HOT_POSTS, {
       const { title } = getCurrentPost(this.attributes);
       this.emit(
         ':ask',
-        `Sorry, you're already on the top post for r ${subreddit}. Do you want to know more about "${title}"?`
+        `Sorry, you're already on the top post for r ${subreddit}.
+        Do you want to know more about "${title}"?`
       );
     } else {
       this.attributes.rank = rank - 1;
@@ -67,7 +69,8 @@ const HotPostsHandlers = Alexa.CreateStateHandler(STATES.HOT_POSTS, {
       const { title } = getCurrentPost(this.attributes);
       this.emit(
         ':ask',
-        `Sorry, that's all I have for you on r ${subreddit}. Do you want to know more about "${title}"?`
+        `Sorry, that's all I have for you on r ${subreddit}.
+        Do you want to know more about "${title}"?`
       );
     } else {
       this.attributes.rank = rank + 1;

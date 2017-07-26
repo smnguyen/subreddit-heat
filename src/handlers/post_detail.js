@@ -1,6 +1,7 @@
 import Alexa from 'alexa-sdk';
 
-import { findHotPosts, getCurrentPost } from 'handlers/common';
+import { findHotPosts } from 'handlers/common';
+import { getCurrentPost } from 'helpers';
 import { INTENTS, STATES } from 'helpers/constants';
 
 const PostDetailHandlers = Alexa.CreateStateHandler(STATES.POST_DETAIL, {
