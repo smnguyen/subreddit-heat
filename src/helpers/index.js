@@ -1,7 +1,8 @@
 import fetch from 'node-fetch';
 
 export function fetchPosts(subreddit, sort = 'hot', limit = 5) {
-  return fetch(`https://www.reddit.com/r/${subreddit}/${sort}.json?limit=${limit}&raw_json=1`)
+  const subredditPath = subreddit ? `/r/${subreddit}` : '';
+  return fetch(`https://www.reddit.com${subredditPath}/${sort}.json?limit=${limit}&raw_json=1`)
     .then(response => response.json())
     .then(json => json.data.children);
 }
@@ -11,10 +12,14 @@ export function getSubreddit(request) {
   if (slot && slot.value) {
     const subreddit = queryToSubreddit(slot.value);
     console.log('Query: ', slot.value, 'Subreddit: ', subreddit);
-    return { subreddit, query: slot.value };
-  } else {
-    return {};
+
+    // Search on the front page if the user said 'reddit'.
+    if (subreddit !== 'reddit') {
+      return { subreddit, query: slot.value };
+    }
   }
+
+  return {};
 }
 
 export function getCurrentPost({ posts, rank }) {
@@ -32,7 +37,7 @@ export function getCurrentPost({ posts, rank }) {
 // Source: https://github.com/reddit/reddit/blob/master/r2/r2/models/subreddit.py
 //   See the subreddit regexes and `Subreddit.is_valid_name`.
 export function queryToSubreddit(query) {
-  return query.replace(/\W/g, '');
+  return `${query.toLowerCase().replace(/\W/g, '')}`;
 }
 
 export function rankToOrdinal(rank) {

@@ -16,7 +16,7 @@ const PostDetailHandlers = Alexa.CreateStateHandler(STATES.POST_DETAIL, withHand
     const { title } = getCurrentPost(this.attributes);
     this.emit(
       ':ask',
-      `Let me know if you want to know more about "${title}" from r ${subreddit}.`,
+      `Let me know if you want to know more about "${title}" from ${subreddit}.`,
       `Do you want to know more about "${title}"?`
     );
   },
@@ -25,7 +25,7 @@ const PostDetailHandlers = Alexa.CreateStateHandler(STATES.POST_DETAIL, withHand
     const { title, score, author, domain, is_self, num_comments } = getCurrentPost(this.attributes);
 
     const messages = [
-      `"${title}" on r ${subreddit} has ${score} karma.`,
+      `"${title}" on ${subreddit} has ${score} karma.`,
       `It was posted by ${author}.`,
       is_self ? 'The post was a self post.' : `The post was found on ${domain}.`,
       `It has ${num_comments} comments.`,

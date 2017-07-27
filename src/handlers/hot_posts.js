@@ -15,7 +15,7 @@ const HotPostsHandlers = Alexa.CreateStateHandler(STATES.HOT_POSTS, withHandlerL
     const { subreddit } = this.attributes;
     this.emit(
       ':ask',
-      `I can tell you about the hottest posts on r ${subreddit}.
+      `I can tell you about the hottest posts on ${subreddit}.
       You can say "next", "previous", or "say that again" to hear more.`
     );
   },
@@ -25,7 +25,7 @@ const HotPostsHandlers = Alexa.CreateStateHandler(STATES.HOT_POSTS, withHandlerL
 
     this.emit(
       ':ask',
-      `The ${rankToOrdinal(rank)} hottest post on r ${subreddit} is: "${title}".
+      `The ${rankToOrdinal(rank)} hottest post on ${subreddit} is: "${title}".
       Do you want to know more?`
     );
   },
@@ -54,7 +54,7 @@ const HotPostsHandlers = Alexa.CreateStateHandler(STATES.HOT_POSTS, withHandlerL
       const { title } = getCurrentPost(this.attributes);
       this.emit(
         ':ask',
-        `Sorry, you're already on the top post for r ${subreddit}.
+        `Sorry, you're already on the top post for ${subreddit}.
         Do you want to know more about "${title}"?`
       );
     } else {
@@ -69,7 +69,7 @@ const HotPostsHandlers = Alexa.CreateStateHandler(STATES.HOT_POSTS, withHandlerL
       const { title } = getCurrentPost(this.attributes);
       this.emit(
         ':ask',
-        `Sorry, that's all I have for you on r ${subreddit}.
+        `Sorry, that's all I have for you on ${subreddit}.
         Do you want to know more about "${title}"?`
       );
     } else {

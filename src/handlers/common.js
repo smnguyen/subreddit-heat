@@ -22,21 +22,12 @@ export function findHotPosts() {
   const request = this.event.request;
   const { subreddit, query } = getSubreddit(request);
 
-  if (!subreddit) {
-    console.error("Couldn't parse subreddit from request:", request);
-    return this.emit(
-      ':ask',
-      "Sorry, I don't know what you mean. I can tell you the hot posts for a subreddit you care about.",
-      "Here's an example: ask me, 'What are the hot posts on /r/politics?'"
-    );
-  }
-
   fetchPosts(subreddit)
     .then(posts => posts.filter(post => !post.data.stickied))
     .then(posts => {
       if (posts.length) {
         this.handler.state = STATES.HOT_POSTS;
-        this.attributes.subreddit = subreddit;
+        this.attributes.subreddit = subreddit ? `r ${subreddit}` : 'the front page';
         this.attributes.posts = posts;
         this.attributes.rank = 1;
         this.emitWithState(INTENTS.POST_TITLE);
@@ -44,7 +35,7 @@ export function findHotPosts() {
         this.handler.state = '';
         this.emit(
           ':ask',
-          `Looks like nobody has posted on r ${subreddit} yet. Ask me about a different subreddit.`,
+          `Looks like nobody has posted on ${subreddit} yet. Ask me about a different subreddit.`,
           'Ask me about a different subreddit.'
         );
       }
