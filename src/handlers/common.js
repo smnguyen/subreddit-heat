@@ -8,11 +8,18 @@ export function withHandlerLogging(handlers) {
       const request = this.event.request;
       const requestType = request.type;
       const requestIntent = requestType === 'IntentRequest' ? request.intent.name : '';
+      const state = this.handler.state;
 
-      console.log(`[request type] ${requestType} -- [request intent] ${requestIntent}`);
-      console.log(`[intent] ${intent} -- [state] ${this.handler.state}`);
+      console.log(
+        `[request type] ${requestType}, [request intent] ${requestIntent},
+        [intent] ${intent}, [state] ${state}`
+      );
 
-      rawHandler.call(this);
+      try {
+        rawHandler.call(this);
+      } catch (e) {
+        console.error(`Error handling intent ${intent} with state ${state}`, e);
+      }
     };
   });
   return handlers;
