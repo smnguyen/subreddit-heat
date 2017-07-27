@@ -2,7 +2,7 @@ import fetch from 'node-fetch';
 
 export function fetchPosts(subreddit, sort = 'hot', limit = 5) {
   const subredditPath = subreddit ? `/r/${subreddit}` : '';
-  return fetch(`https://www.reddit.com${subredditPath}/${sort}.json?limit=${limit}&raw_json=1`)
+  return fetch(`https://www.reddit.com${subredditPath}/${sort}.json?limit=${limit}`)
     .then(response => response.json())
     .then(json => json.data.children);
 }
