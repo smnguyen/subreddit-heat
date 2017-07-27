@@ -268,6 +268,104 @@
               "explain like I'm 5"
             ]
           }
+        },
+        {
+          "id": "nba",
+          "name": {
+            "value": "nba",
+            "synonyms": []
+          }
+        },
+        {
+          "id": "nfl",
+          "name": {
+            "value": "nfl",
+            "synonyms": []
+          }
+        },
+        {
+          "id": "sports",
+          "name": {
+            "value": "sports",
+            "synonyms": []
+          }
+        },
+        {
+          "id": "soccer",
+          "name": {
+            "value": "soccer",
+            "synonyms": []
+          }
+        },
+        {
+          "id": "warriors",
+          "name": {
+            "value": "warriors",
+            "synonyms": []
+          }
+        },
+        {
+          "id": "lakers",
+          "name": {
+            "value": "lakers",
+            "synonyms": []
+          }
+        },
+        {
+          "id": "chicagobulls",
+          "name": {
+            "value": "chicago bulls",
+            "synonyms": []
+          }
+        },
+        {
+          "id": "hawks",
+          "name": {
+            "value": "hawks",
+            "synonyms": []
+          }
+        },
+        {
+          "id": "personalfinance",
+          "name": {
+            "value": "personal finance",
+            "synonyms": []
+          }
+        },
+        {
+          "id": "flashtv",
+          "name": {
+            "value": "flash tv",
+            "synonyms": []
+          }
+        },
+        {
+          "id": "gameofthrones",
+          "name": {
+            "value": "game of thrones",
+            "synonyms": []
+          }
+        },
+        {
+          "id": "asoiaf",
+          "name": {
+            "value": "asoiaf",
+            "synonyms": []
+          }
+        },
+        {
+          "id": "mrrobot",
+          "name": {
+            "value": "mr robot",
+            "synonyms": []
+          }
+        },
+        {
+          "id": "finance",
+          "name": {
+            "value": "finance",
+            "synonyms": []
+          }
         }
       ]
     },
